@@ -21,7 +21,7 @@ const Header = () => {
           <br/>
         <h3 className="text-md sm:text-1px md:text-[30px] inline-block max-w-4xl mt-6 text-white/70">| Every space has a story</h3>
         <div className="space-x-6 mt-36">
-            <a href="#Projects" className="border border-white px-8 py-3 rounded">Contact Us</a>
+            <a href="#Contact" className="border border-white px-8 py-3 rounded">Contact Us</a>
             <a href="#Contact" className="bg-green-800/90 px-8 py-3 rounded ">Shop Now</a>
         </div>
       </motion.div>
