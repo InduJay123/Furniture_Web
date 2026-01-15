@@ -5,6 +5,21 @@ import { motion } from "motion/react"
 
 const Navbar = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+     useEffect(() => {
+        document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
+      }, [showMobileMenu]);
+
+      // Detect scroll
+      useEffect(() => {
+        const handleScroll = () => {
+          if (window.scrollY > 50) setScrolled(true);
+          else setScrolled(false);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
 
     useEffect(()=>{
         if(showMobileMenu){
@@ -22,7 +37,9 @@ const Navbar = () => {
       transition={{duration: 1.5}}
       whileInView={{opacity:1, y:0}}
       viewport={{once: true}}
-    className='absolute top-0 left-0 w-full z-10'>
+      className={`fixed top-0 left-0 w-full z-10   ${
+        scrolled ? 'bg-white/90 text-black shadow-md backdrop-blur-md' : 'bg-transparent text-white'
+      }`}>
       <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32 bg-transparent'>
         <motion.img 
         initial={{opacity:0, x:-100}}
@@ -35,18 +52,18 @@ const Navbar = () => {
         transition={{duration: 1.5}}
         whileInView={{opacity:1, y:0}}
         viewport={{once: true}}
-        className='hidden md:flex gap-7 text-white'>
-            <a href='#Header' className='cursor-pointer hover:teaxt-gray-400 hover:scale-125'>Home</a>
-            <a href='#About' className='cursor-pointer hover:teaxt-gray-400 hover:scale-125'>About</a>
-            <a href='#Projects' className='cursor-pointer hover:teaxt-gray-400 hover:scale-125'>Products</a>
-            <a href='#Testimonials' className='cursor-pointer hover:teaxt-gray-400 hover:scale-125'>Testimonials</a>
+        className='hidden md:flex gap-7'>
+            <a href='#Header' className='cursor-pointer  hover:scale-110'>Home</a>
+            <a href='#About' className='cursor-pointer  hover:scale-110'>About</a>
+            <a href='#Projects' className='cursor-pointer hover:scale-110'>Products</a>
+            <a href='#Testimonials' className='cursor-pointer hover:scale-110'>Testimonials</a>
         </motion.ul>
         <motion.button 
           initial={{opacity:0, x:200}}
         transition={{duration: 1}}
         whileInView={{opacity:1, x:0}}
         viewport={{once: true}}
-        className='hidden md:block bg-white px-8 py-2 rounded-full hover:bg-blue-500 hover:text-white'>Sign Up</motion.button>
+        className='hidden md:block bg-white px-8 py-2 rounded-full hover:bg-blue-500 text-black'>Sign Up</motion.button>
         <img onClick={()=>setShowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt=''/>
       </div>
       {/*----------mobile-menu-----------*/}
