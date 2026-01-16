@@ -3,7 +3,7 @@ import { assets } from "../assets/assets"
 
 const Footer = () => {
   return (
-    <div className="pt-10 px-4 md:px-20 lg:px-32 bg-gray-900 w-full overflow-hidden " id="Footer">
+    <div className="pt-10 px-4 md:px-20 lg:px-32 bg-[#2B2622] w-full overflow-hidden " id="Footer">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
         <div className="w-full md:w-1/3 flex flex-col items-start space-y-4">
             <img src={assets.img10} alt="" className='h-20 w-40 rounded-sm'/>
