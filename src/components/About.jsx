@@ -33,7 +33,7 @@ const About = () => {
                         <p>Professional Designers</p>
                     </div>
                     </div>
-                    <div className="border-l-2 border-blue-800 pl-6 space-y-2">
+                    <div className="border-l-2 border-[#2B2622] pl-6 space-y-2">
                         <h1 className="text-2xl font-semibold">Modi Furn</h1>
                         <p className=" max-w-lg">
 Transform your living spaces into stylish sanctuaries. From elegant sofas to timeless tables, Furniture Haven is your trusted partner in creating a home that reflects your unique style. Let us help you bring your dream interiors to life.
