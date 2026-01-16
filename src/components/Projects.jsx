@@ -42,10 +42,10 @@ const Projects = () => {
     
         <div className="justify-end items-center flex mb-8">
             <button onClick={prevProject} className="p-3 bg-[#E9DBCF] rounded mr-2" aria-label='Previous Project'>
-             <ChevronLeft/>
+             <ChevronLeft size={20}/>
             </button>
             <button onClick={nextProject} className="p-3 bg-[#E9DBCF] rounded mr-2" aria-label='Next Project'>
-            <ChevronRight/>
+            <ChevronRight size={20}/>
             </button>
         </div>
 
