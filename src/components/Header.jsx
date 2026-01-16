@@ -1,8 +1,11 @@
 import Navbar from "./Navbar"
 import { motion } from "motion/react"
 import livingRoom from "../assets/hero-living-room.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen mb-4 bg-cover bg-center flex items-center w-full overflow-hidden" 
       style={{backgroundImage: `url(${livingRoom})`}} id="Header">
@@ -22,8 +25,13 @@ const Header = () => {
         <h3 className="text-md sm:text-1px md:text-[30px] inline-block max-w-4xl mt-6 text-white/70">| Every space has a story</h3>
         <div className="space-x-6 mt-36">
             <a href="#Contact" className="border border-white px-8 py-3 rounded">Contact Us</a>
-            <a href="#Contact" className="bg-green-800/90 px-8 py-3 rounded ">Shop Now</a>
-        </div>
+            <button
+                onClick={() => navigate("/shop")}
+                className="bg-green-800/90 px-8 py-3 rounded"
+              >
+                Shop Now
+              </button>
+            </div>
       </motion.div>
     </div>
   )
