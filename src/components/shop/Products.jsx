@@ -8,8 +8,8 @@ const ProductsPage = () => {
             <h4> OUR COLLECTION </h4>
             <h4> All Products</h4>
             <div className="min-h-screen py-20 px-24">
-                <p className="text-lg text-gray-500 mb-6"> OUR COLLECTION </p>            
-                <h2 className="text-4xl font-serif font-medium  mb-10">All Products</h2>
+                <h6 className="text-sm text-gray-400 tracking-widest mb-4"> OUR COLLECTION </h6>            
+                <h2 className="text-5xl font-serif font-medium  mb-10">All Products</h2>
                 <ProductList />
             </div>
         </div>
