@@ -1,7 +1,7 @@
 import { useEffect , useState} from "react";
 import { assets, projectsData } from "../assets/assets"
 import { motion } from "motion/react"
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Projects = () => {
 
@@ -45,7 +45,7 @@ const Projects = () => {
              <ChevronLeft/>
             </button>
             <button onClick={nextProject} className="p-3 bg-[#E9DBCF] rounded mr-2" aria-label='Next Project'>
-                <img src={assets.right_arrow} alt="Next"/>
+            <ChevronRight/>
             </button>
         </div>
 
