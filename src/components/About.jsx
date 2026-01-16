@@ -40,7 +40,7 @@ Transform your living spaces into stylish sanctuaries. From elegant sofas to tim
 You can further tailor this description to align with your brand’s personality and specific offerings! </p>
                     </div>
                 </div>
-                <button className="bg-blue-600 text-white px-8 py-2 rounded ">Read more</button>
+                <button className="bg-[#5A3E2B] text-white px-8 py-2 rounded ">Read more</button>
             </div>
         </div>
     </motion.div>
