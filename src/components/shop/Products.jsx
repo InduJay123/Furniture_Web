@@ -11,6 +11,7 @@ const ProductsPage = () => {
                 <h6 className="text-sm text-gray-400 tracking-widest mb-4"> OUR COLLECTION </h6>            
                 <h2 className="text-5xl font-serif font-medium  mb-10">All Products</h2>
                 <ProductList />
+               
             </div>
         </div>
     )

@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/Home"
-import ProductsPage from "./components/shop/products"
+import Shop from "./pages/shop";
 
 const App = () => {
   return (
      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<ProductsPage/>} />
+        <Route path="/shop" element={<Shop/>} />
       </Routes>
     </BrowserRouter>
   )
