@@ -1,9 +1,61 @@
 import { useState } from "react";
 import authBg from "../assets/auth.jfif";
 import { ArrowRight } from "lucide-react";
+import api from "../api/axios";
 
 export default function AuthPage() {
   const [isSignup, setIsSignup] = useState(true);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setLoading(true);
+
+  try {
+    if (isSignup) {
+      if (formData.password !== formData.confirmPassword) {
+        setError("Passwords do not match");
+        setLoading(false);
+        return;
+      }
+
+      await api.post("accounts/register/", {
+        username: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
+
+      setIsSignup(false); // switch to login
+    } else {
+      const res = await api.post("accounts/login/", {
+        username: formData.email, // OR username depending backend
+        password: formData.password,
+      });
+
+      localStorage.setItem("access", res.data.access);
+      localStorage.setItem("refresh", res.data.refresh);
+
+      window.location.href = "/";
+    }
+  } catch (err) {
+    setError(err.response?.data?.detail || "Authentication failed");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-[#faf9f7]">
@@ -51,34 +103,47 @@ export default function AuthPage() {
         </p>
 
         {/* FORM */}
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           {isSignup && (
             <input
               type="text"
+              name="fullName"
               placeholder="Full name"
+              value={formData.fullName}
+              onChange={handleChange}
               className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
             />
           )}
 
           <input
             type="email"
+            name="email"
             placeholder="Email address"
+            value={formData.email}
+            onChange={handleChange}
             className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
           />
 
           <input
             type="password"
+            name="password"
             placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
             className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
           />
 
           {isSignup && (
             <input
               type="password"
+              name="confirmPassword"
               placeholder="Confirm password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
               className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
             />
           )}
+            
 
           {isSignup ? (
             <label className="flex items-center gap-2 text-sm text-gray-600">
@@ -103,12 +168,15 @@ export default function AuthPage() {
               </a>
             </div>
           )}
+<button
+  type="submit"
+  disabled={loading}
+  className="w-full bg-[#2b2723] text-white py-3 mt-4 flex items-center justify-center gap-2"
+>
+  {loading ? "Loading...." : isSignup ? "Create Account" : "Sign In"}
+  <ArrowRight size={18} />
+</button>
 
-
-          <button className="w-full bg-[#2b2723] text-white py-3 mt-4 flex items-center justify-center gap-2">
-            {isSignup ? "Create Account" : "Sign In"}
-            <span><ArrowRight size={18}/></span>
-          </button>
         </form>
       </div>
 
