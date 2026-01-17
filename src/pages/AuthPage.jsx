@@ -8,7 +8,7 @@ export default function AuthPage() {
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-[#faf9f7]">
       
       {/* LEFT SIDE */}
-      <div className="flex flex-col justify-center px-10 md:px-20">
+      <div className="flex flex-col justify-center px-24 md:px-40">
         
         {/* Logo */}
         <h1 className="text-3xl font-serif mb-8">HAUS</h1>
@@ -49,27 +49,27 @@ export default function AuthPage() {
             <input
               type="text"
               placeholder="Full name"
-              className="w-full border px-4 py-3 rounded-md"
+              className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
             />
           )}
 
           <input
             type="email"
             placeholder="Email address"
-            className="w-full border px-4 py-3 rounded-md"
+            className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
           />
 
           <input
             type="password"
             placeholder="Password"
-            className="w-full border px-4 py-3 rounded-md"
+            className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
           />
 
           {isSignup && (
             <input
               type="password"
               placeholder="Confirm password"
-              className="w-full border px-4 py-3 rounded-md"
+              className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
             />
           )}
 
@@ -87,7 +87,7 @@ export default function AuthPage() {
             </label>
           )}
 
-          <button className="w-full bg-[#2b2723] text-white py-3 rounded-md mt-4 flex items-center justify-center gap-2">
+          <button className="w-full bg-[#2b2723] text-white py-3 mt-4 flex items-center justify-center gap-2">
             {isSignup ? "Create Account" : "Sign In"}
             <span>→</span>
           </button>
@@ -101,11 +101,12 @@ export default function AuthPage() {
           alt="Furniture"
           className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-black/30"></div>
         <div className="absolute bottom-16 left-16 text-white max-w-md">
-          <h2 className="text-4xl font-serif mb-4">
+          <h2 className="text-5xl font-serif mb-4">
             Curated for<br />Modern Living
           </h2>
-          <p className="text-gray-200">
+          <p className="text-gray-200 text-lg">
             Discover timeless furniture pieces that transform your space into a
             sanctuary of style and comfort.
           </p>
