@@ -65,7 +65,7 @@ const Navbar = () => {
           whileInView={{opacity:1, x:0}}
           viewport={{once: true}}
           onClick={() => navigate("/auth")}
-          className='hidden md:block bg-white px-8 py-2 rounded-full hover:bg-blue-500 text-black'>Sign Up</motion.button>
+          className='hidden md:block bg-white px-8 py-2 rounded-full hover:bg-gray-500 hover:text-white text-black'>Sign Up</motion.button>
           <img onClick={()=>setShowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt=''/>
       </div>
       {/*----------mobile-menu-----------*/}

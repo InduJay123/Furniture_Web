@@ -1,5 +1,6 @@
 import { useState } from "react";
 import authBg from "../assets/auth.jfif";
+import { ArrowRight } from "lucide-react";
 
 export default function AuthPage() {
   const [isSignup, setIsSignup] = useState(true);
@@ -10,27 +11,33 @@ export default function AuthPage() {
       {/* LEFT SIDE */}
       <div className="flex flex-col justify-center px-24 md:px-40">
         
+        <button className="w-fit px-4 py-1 rounded-md border border-[#5A3E2B]/10 bg-[#e9e7e3]/50 mb-6">
+          <a href="/" className="text-black/50 inline-block">Back</a>
+        </button>
+        
         {/* Logo */}
         <h1 className="text-3xl font-serif mb-8">HAUS</h1>
 
         {/* Toggle */}
-        <div className="flex bg-[#e9e7e3] rounded-md overflow-hidden mb-10">
-          <button
-            onClick={() => setIsSignup(false)}
-            className={`flex-1 py-3 text-sm font-medium ${
-              !isSignup ? "bg-white" : "text-gray-500"
-            }`}
-          >
-            Sign In
-          </button>
-          <button
-            onClick={() => setIsSignup(true)}
-            className={`flex-1 py-3 text-sm font-medium ${
-              isSignup ? "bg-white" : "text-gray-500"
-            }`}
-          >
-            Sign Up
-          </button>
+        <div className="p-1 bg-[#e9e7e3]  mb-10">
+          <div className="flex rounded-md overflow-hidden">
+            <button
+              onClick={() => setIsSignup(false)}
+              className={`flex-1 py-2 text-sm ${
+                !isSignup ? "bg-white" : "text-gray-500"
+              }`}
+            >
+              Sign In
+            </button>
+            <button
+              onClick={() => setIsSignup(true)}
+              className={`flex-1 py-2 text-sm ${
+                isSignup ? "bg-white" : "text-gray-500"
+              }`}
+            >
+              Sign Up
+            </button>
+          </div>
         </div>
 
         {/* Title */}
@@ -40,7 +47,7 @@ export default function AuthPage() {
         <p className="text-gray-500 mb-8">
           {isSignup
             ? "Join us and discover curated furniture"
-            : "Sign in to continue"}
+            : "Enter your credentials to access your account"}
         </p>
 
         {/* FORM */}
@@ -73,7 +80,7 @@ export default function AuthPage() {
             />
           )}
 
-          {isSignup && (
+          {isSignup ? (
             <label className="flex items-center gap-2 text-sm text-gray-600">
               <input type="checkbox" />
               I agree to the{" "}
@@ -85,11 +92,22 @@ export default function AuthPage() {
                 Privacy Policy
               </span>
             </label>
+          ) : (
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" className="rounded border-border" />
+                <span className="text-gray-500">Remember me</span>
+              </label>
+              <a href="#" className="text-green-600 hover:underline">
+                Forgot password?
+              </a>
+            </div>
           )}
+
 
           <button className="w-full bg-[#2b2723] text-white py-3 mt-4 flex items-center justify-center gap-2">
             {isSignup ? "Create Account" : "Sign In"}
-            <span>→</span>
+            <span><ArrowRight size={18}/></span>
           </button>
         </form>
       </div>
