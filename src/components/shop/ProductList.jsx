@@ -1,7 +1,6 @@
-// src/components/ProductList.jsx
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ProductCard from "./ProductCard";
+import api from "../../api/axiosPublic";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -9,9 +8,8 @@ const ProductList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Replace with your Django backend URL
-    axios
-      .get("http://127.0.0.1:8000/api/products/list/")
+    api
+      .get("products/list/")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -23,6 +21,7 @@ const ProductList = () => {
         setLoading(false);
       });
   }, []);
+
 
   if (loading) return <p className="text-center mt-10">Loading products...</p>;
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;

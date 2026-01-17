@@ -1,12 +1,14 @@
 import { useState } from "react";
 import authBg from "../assets/auth.jfif";
 import { ArrowRight } from "lucide-react";
-import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
+import axiosPublic from "../api/axiosPublic";
 
 export default function AuthPage() {
+  const navigate = useNavigate();
   const [isSignup, setIsSignup] = useState(true);
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -32,26 +34,28 @@ export default function AuthPage() {
         return;
       }
 
-      await api.post("accounts/register/", {
+      await axiosPublic.post("accounts/register/", {
         username: formData.name,
         email: formData.email,
         password: formData.password,
       });
 
-      setIsSignup(false); // switch to login
+      setIsSignup(false); 
     } else {
-      const res = await api.post("accounts/login/", {
-        username: formData.email, // OR username depending backend
+      const res = await axiosPublic.post("accounts/login/", {
+        email: formData.email, 
         password: formData.password,
       });
 
       localStorage.setItem("access", res.data.access);
       localStorage.setItem("refresh", res.data.refresh);
 
-      window.location.href = "/";
+      navigate("/shop");
+
     }
   } catch (err) {
     setError(err.response?.data?.detail || "Authentication failed");
+    console.log(err.response?.data);
   } finally {
     setLoading(false);
   }
@@ -107,9 +111,9 @@ export default function AuthPage() {
           {isSignup && (
             <input
               type="text"
-              name="fullName"
+              name="name"
               placeholder="Full name"
-              value={formData.fullName}
+              value={formData.name}
               onChange={handleChange}
               className="w-full border border-[#5A3E2B]/20 bg-[#e9e7e3]/30  px-4 py-3"
             />
