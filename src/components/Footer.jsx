@@ -11,7 +11,7 @@ import { assets } from "../assets/assets";
 const Footer = () => {
   return (
     <footer
-      className="bg-[#2B2622] text-gray-400 px-6 md:px-20 lg:px-32 pt-16 pb-6"
+      className="bg-[#2B2622] text-gray-400 px-6 md:px-20 lg:px-32 pt-12 pb-6"
       id="Footer"
     >
       {/* Top Section */}
@@ -91,7 +91,7 @@ const Footer = () => {
       </div>
 
       {/* Divider */}
-      <div className="border-t border-gray-700 my-10"></div>
+      <div className="border-t border-gray-700 my-8"></div>
 
       {/* Bottom Bar */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">

@@ -2,7 +2,7 @@ const ProductCard = ({ product }) => {
   const isImage = product.image_url.match(/\.(jpeg|jpg|gif|png)$/i);
 
   return (
-    <div className="bg-white py-8 rounded-lg shadow transition">
+    <div className="bg-white pb-4 rounded-lg shadow transition">
       {isImage ? (
         <img
           src={product.image_url} 
@@ -12,9 +12,9 @@ const ProductCard = ({ product }) => {
       ) : (
         <p className="text-red-500">No image available</p>
       )}
-      <p className="text-gray-500 mt-2">{product.category}</p>
-      <h3 className=" text-lg">{product.name}</h3>
-      <p className="mt-1">Price: ${product.price}</p>
+      <p className="px-2 text-gray-500 mt-2">{product.category}</p>
+      <h3 className="px-2 text-lg">{product.name}</h3>
+      <p className="px-2 mt-1">Price: Rs. {product.price}</p>
     </div>
   );
 };
