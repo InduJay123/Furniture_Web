@@ -2,11 +2,12 @@ import { useState } from 'react'
 import {assets} from '../assets/assets'
 import { useEffect } from 'react';
 import { motion } from "motion/react"
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-
+    const navigate = useNavigate();
      useEffect(() => {
         document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
       }, [showMobileMenu]);
@@ -60,11 +61,12 @@ const Navbar = () => {
         </motion.ul>
         <motion.button 
           initial={{opacity:0, x:200}}
-        transition={{duration: 1}}
-        whileInView={{opacity:1, x:0}}
-        viewport={{once: true}}
-        className='hidden md:block bg-white px-8 py-2 rounded-full hover:bg-blue-500 text-black'>Sign Up</motion.button>
-        <img onClick={()=>setShowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt=''/>
+          transition={{duration: 1}}
+          whileInView={{opacity:1, x:0}}
+          viewport={{once: true}}
+          onClick={() => navigate("/auth")}
+          className='hidden md:block bg-white px-8 py-2 rounded-full hover:bg-blue-500 text-black'>Sign Up</motion.button>
+          <img onClick={()=>setShowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt=''/>
       </div>
       {/*----------mobile-menu-----------*/}
       <div className={`md:hidden ${showMobileMenu ?  'fixed w-full' : 'h-0 w-0'} right-0 top-0 bottom-0 overflow-hidden bg-white transition-all`}>
