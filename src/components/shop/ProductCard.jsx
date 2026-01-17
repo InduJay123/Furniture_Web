@@ -1,5 +1,4 @@
 const ProductCard = ({ product }) => {
-  // Only show if URL is an image
   const isImage = product.image_url.match(/\.(jpeg|jpg|gif|png)$/i);
 
   return (
@@ -14,8 +13,8 @@ const ProductCard = ({ product }) => {
         <p className="text-red-500">No image available</p>
       )}
       <p className="text-gray-500 mt-2">{product.category}</p>
-      <h3 className="font-semibold text-lg">{product.name}</h3>
-      <p className="mt-1 font-bold">Price: ${product.price}</p>
+      <h3 className=" text-lg">{product.name}</h3>
+      <p className="mt-1">Price: ${product.price}</p>
     </div>
   );
 };
