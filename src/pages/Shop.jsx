@@ -1,11 +1,13 @@
 import Footer from "../components/Footer";
 import Explore from "../components/shop/Explore";
+import FeaturePage from "../components/shop/FeatureProducts";
 import Newsletter from "../components/shop/Newsletter";
-import ProductsPage from "../components/shop/products";
+import ProductsPage from "../components/shop/ProductsPage";
 
 const Shop = () => {
     return (
         <div>
+            <FeaturePage/>
             <Explore/>
             <ProductsPage/>
             <Newsletter/>
