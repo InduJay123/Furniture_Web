@@ -7,7 +7,7 @@ const TopBanner = () => {
         backgroundImage: `url(${livingRoom})`,
       }}> 
             <h1>Timeless Elegance</h1>
-            <p>Explore </p>
+            <p>Explore today</p>
         </div>
     )
 }
