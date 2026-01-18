@@ -1,6 +1,6 @@
 const TopBanner = () => {
     return(
-        <div>
+        <div className="p-2"> 
             <h1>Timeless Elegance</h1>
         </div>
     )
