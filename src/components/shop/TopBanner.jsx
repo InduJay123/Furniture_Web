@@ -1,6 +1,8 @@
 const TopBanner = () => {
     return(
-        <div></div>
+        <div>
+            <h1>Timeless</h1>
+        </div>
     )
 }
 
