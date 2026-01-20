@@ -1,4 +1,4 @@
-import livingRoom from "../assets/hero-living-room.jpg";
+import livingRoom from "../../assets/hero-living-room.jpg";
 
 const TopBanner = () => {
     return(
