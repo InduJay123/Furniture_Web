@@ -10,12 +10,14 @@ const Shop = () => {
     return (
         <div>
             <ShopNavbar/>
-            <TopBanner/>
-            <FeaturePage/>
-            <Explore/>
-            <ProductsPage/>
-            <Newsletter/>
-            <Footer/>
+            <div className="pt-16">
+                <TopBanner />
+                <FeaturePage />
+                <Explore />
+                <ProductsPage />
+                <Newsletter />
+                <Footer />
+            </div>
         </div>
     )
 }
