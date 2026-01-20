@@ -40,7 +40,9 @@ const ProductCard = ({ product }) => {
         {/* Buttons overlay */}
         {hovered && (
           <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-4 py-1">
-            <button className="flex items-center gap-2 px-24 py-3 bg-gray-900 text-white text-sm hover:bg-gray-800 transition whitespace-nowrap">
+            <button 
+              onClick={addToCart}
+              className="flex items-center gap-2 px-24 py-3 bg-gray-900 text-white text-sm hover:bg-gray-800 transition whitespace-nowrap">
               <ShoppingBag size={16} /> Add to Cart
             </button>
             <button className="flex items-center gap-2 p-2 bg-white text-black hover:bg-gray-200 transition">
