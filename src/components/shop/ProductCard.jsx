@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { Heart, ShoppingBag} from "lucide-react"; // Using lucide icons as example
-import axios from "axios";
+import { Heart, ShoppingBag} from "lucide-react"; 
+import axiosPrivate from "../../api/axiosPrivate";
 
-const addToCart = async () => {
-  await axios.post(
-    "/api/cart/add/",
-    { product_id: product.id, quantity: 1 },
-    {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+const addToCart = async (product) => {
+    try {
+      await axiosPrivate.post("cart/add/", {
+        product_id: product.id,
+        quantity: 1,
+      });
+      alert("Product added to cart");
+    } catch (error) {
+      console.error(error);
+      alert("Add to cart failed");
     }
-  );
-};
+  };
+
 
 const ProductCard = ({ product }) => {
   const isImage = product.image_url.match(/\.(jpeg|jpg|gif|png)$/i);
