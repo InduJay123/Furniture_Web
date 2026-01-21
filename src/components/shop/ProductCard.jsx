@@ -1,23 +1,8 @@
 import { useState } from "react";
-import { Heart, ShoppingBag} from "lucide-react"; 
-import axiosPrivate from "../../api/axiosPrivate";
+import { Heart, ShoppingBag} from "lucide-react";
 import PropTypes from "prop-types";
 
-const addToCart = async (product) => {
-    try {
-      await axiosPrivate.post("cart/add/", {
-        product_id: product.id,
-        quantity: 1,
-      });
-      alert("Product added to cart");
-    } catch (error) {
-      console.error(error);
-      alert("Add to cart failed");
-    }
-  };
-
-
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   const isImage = product.image_url.match(/\.(jpeg|jpg|gif|png)$/i);
   const [hovered, setHovered] = useState(false);
 
@@ -44,7 +29,7 @@ const ProductCard = ({ product }) => {
         {hovered && (
           <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-4 py-1">
             <button 
-              onClick={() => addToCart(product)}
+              onClick={() => onAddToCart(product)}
               className="flex items-center gap-2 px-24 py-3 bg-gray-900 text-white text-sm hover:bg-gray-800 transition whitespace-nowrap">
               <ShoppingBag size={16} /> Add to Cart
             </button>
@@ -70,6 +55,7 @@ ProductCard.propTypes = {
     category: PropTypes.string,
     image_url: PropTypes.string.isRequired,
   }).isRequired,
+  onAddToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
