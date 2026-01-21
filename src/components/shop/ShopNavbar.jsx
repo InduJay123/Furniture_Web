@@ -6,6 +6,20 @@ const ShopNavbar = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
+  const handleAddToCart = (product) => {
+    const existing = cartItems.find((item) => item.id === product.id);
+    if (existing) {
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCartItems((prev) => [...prev, { ...product, quantity: 1 }]);
+    }
+    setCartOpen(true);
+  }
+
   const incrementQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
@@ -39,15 +53,17 @@ const ShopNavbar = () => {
       </div>
 
       {/* Cart Panel */}
-      <CartPanel
-        cartOpen={cartOpen}
-        cartItems={cartItems}
-        incrementQty={incrementQty}
-        decrementQty={decrementQty}
-        removeItem={removeItem}
-        subtotal={subtotal}
-        closeCart={() => setCartOpen(false)}
-      />
+      {cartOpen &&
+        <CartPanel
+            cartOpen={cartOpen}
+            cartItems={cartItems}
+            incrementQty={incrementQty}
+            decrementQty={decrementQty}
+            removeItem={removeItem}
+            subtotal={subtotal}
+            closeCart={() => setCartOpen(false)}
+        />
+        }
     </nav>
   );
 };
