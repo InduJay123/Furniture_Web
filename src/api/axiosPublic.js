@@ -7,4 +7,5 @@ const axiosPublic = axios.create({
   },
 });
 
+
 export default axiosPublic;
