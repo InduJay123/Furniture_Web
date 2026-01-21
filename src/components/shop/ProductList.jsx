@@ -11,9 +11,14 @@ const ProductList = () => {
     axiosPublic
       .get("products/list/")
       .then((res) => {
-        setProducts(res.data);
+        const formattedProducts = res.data.map((product) => ({
+        ...product,
+        price: Number(product.price), // ✅ convert string → number
+      }));
+
+        setProducts(formattedProducts);
         setLoading(false);
-        console.log(res.data);
+        console.log(formattedProducts);
       })
       .catch((err) => {
         console.error(err);

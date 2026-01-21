@@ -8,19 +8,19 @@ const FeatureProductList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axiosPublic
-      .get("products/list/")
-      .then((res) => {
-        setProducts(res.data);
-        setLoading(false);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Failed to fetch products");
-        setLoading(false);
-      });
-  }, []);
+  axiosPublic
+    .get("products/list/")
+    .then((res) => {
+      const formattedProducts = res.data.map((product) => ({
+        ...product,
+        price: Number(product.price),
+      }));
+
+      setProducts(formattedProducts);
+      console.log(formattedProducts);
+    })
+    .catch(console.error);
+}, []);
 
 
   if (loading) return <p className="text-center mt-10">Loading products...</p>;

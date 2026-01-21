@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Heart, ShoppingBag} from "lucide-react"; 
 import axiosPrivate from "../../api/axiosPrivate";
+import PropTypes from "prop-types";
 
 const addToCart = async (product) => {
     try {
@@ -43,7 +44,7 @@ const ProductCard = ({ product }) => {
         {hovered && (
           <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-4 py-1">
             <button 
-              onClick={addToCart}
+              onClick={() => addToCart(product)}
               className="flex items-center gap-2 px-24 py-3 bg-gray-900 text-white text-sm hover:bg-gray-800 transition whitespace-nowrap">
               <ShoppingBag size={16} /> Add to Cart
             </button>
@@ -59,6 +60,16 @@ const ProductCard = ({ product }) => {
       <p className="px-2 mt-1 font-medium">Price: Rs. {product.price}</p>
     </div>
   );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    category: PropTypes.string,
+    image_url: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ProductCard;
