@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import axiosPublic from "../../api/axiosPublic";
+import PropTypes from "prop-types";
 
-const ProductList = () => {
+const ProductList = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +14,7 @@ const ProductList = () => {
       .then((res) => {
         const formattedProducts = res.data.map((product) => ({
         ...product,
-        price: Number(product.price), // ✅ convert string → number
+        price: Number(product.price), 
       }));
 
         setProducts(formattedProducts);
@@ -34,10 +35,14 @@ const ProductList = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 ">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
       ))}
     </div>
   );
+};
+
+ProductList.propTypes = {
+  onAddToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
