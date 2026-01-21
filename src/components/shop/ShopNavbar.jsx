@@ -1,42 +1,33 @@
-import { useState } from "react";
 import { FaShoppingCart, FaUser, FaHeart, FaBox } from "react-icons/fa";
-import CartPanel from "../shop/Cart"
+import CartPanel from "./CartPanel";
+import axiosPrivate from "../../api/axiosPrivate";
+import PropTypes from "prop-types";
 
-const ShopNavbar = () => {
-  const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-
-  const handleAddToCart = (product) => {
-    const existing = cartItems.find((item) => item.id === product.id);
-    if (existing) {
-      setCartItems((prev) =>
-        prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    } else {
-      setCartItems((prev) => [...prev, { ...product, quantity: 1 }]);
-    }
-    setCartOpen(true);
-  }
-
-  const incrementQty = (id) => {
-    setCartItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
-    );
-  };
-
-  const decrementQty = (id) => {
-    setCartItems((prev) =>
-      prev.map((item) => (item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item))
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
+const ShopNavbar = ({ cartOpen, setCartOpen, cartItems, setCartItems, incrementQty, decrementQty, removeItem }) => {
 
   const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const handleCartClick = async () => {
+    try {
+      if (!cartOpen) {
+        // Fetch latest cart from backend only when opening
+        const res = await axiosPrivate.get("cart/view/");
+        const { items } = res.data;
+
+        setCartItems(items.map(item => ({
+          id: item.product_id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          category: item.category || "",
+          image: item.image || "",
+        })));
+      }
+      setCartOpen(!cartOpen);
+    } catch (error) {
+      console.error("Failed to load cart", error.response?.data || error.message);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full h-16 bg-white shadow z-50">
@@ -47,25 +38,47 @@ const ShopNavbar = () => {
         <div className="flex items-center gap-6 text-gray-700 text-xl">
           <FaHeart className="cursor-pointer hover:text-green-600" />
           <FaBox className="cursor-pointer hover:text-green-600" />
-          <FaShoppingCart className="cursor-pointer hover:text-green-600" onClick={() => setCartOpen(!cartOpen)} />
+          <FaShoppingCart
+            className="cursor-pointer hover:text-green-600"
+            onClick={handleCartClick} // <-- fetch cart on click
+          />
           <FaUser className="cursor-pointer hover:text-green-600" />
         </div>
       </div>
 
       {/* Cart Panel */}
-      {cartOpen &&
+      {cartOpen && (
         <CartPanel
-            cartOpen={cartOpen}
-            cartItems={cartItems}
-            incrementQty={incrementQty}
-            decrementQty={decrementQty}
-            removeItem={removeItem}
-            subtotal={subtotal}
-            closeCart={() => setCartOpen(false)}
+          cartOpen={cartOpen}
+          cartItems={cartItems}
+          incrementQty={incrementQty}
+          decrementQty={decrementQty}
+          removeItem={removeItem}
+          subtotal={subtotal}
+          closeCart={() => setCartOpen(false)}
         />
-        }
+      )}
     </nav>
   );
+};
+
+ShopNavbar.propTypes = {
+  cartOpen: PropTypes.bool.isRequired,
+  setCartOpen: PropTypes.func.isRequired,
+  cartItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired,
+      category: PropTypes.string,
+      image: PropTypes.string,
+    })
+  ).isRequired,
+  setCartItems: PropTypes.func.isRequired,
+  incrementQty: PropTypes.func.isRequired,
+  decrementQty: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
 };
 
 export default ShopNavbar;
