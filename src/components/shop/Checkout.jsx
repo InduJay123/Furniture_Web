@@ -61,11 +61,11 @@ const Checkout = () => {
                         <input className="border px-3 py-1  rounded bg-transparent w-full" placeholder="Name on card" />
 
                         <label className="block mt-4 mb-2">Card Number</label>
-                        <input className="border p-3 rounded bg-transparent w-full" placeholder="1234 5678 9012 3456" />
+                        <input className="border px-3 py-1 rounded bg-transparent w-full" placeholder="1234 5678 9012 3456" />
 
                         <div className="grid grid-cols-2 gap-4 mt-4">
-                            <input className="border p-3 rounded bg-transparent" placeholder="MM/YY" />
-                            <input className="border p-3 rounded bg-transparent" placeholder="CVV" />
+                            <input className="border px-3 py-1 rounded bg-transparent" placeholder="MM/YY" />
+                            <input className="border px-3 py-1 rounded bg-transparent" placeholder="CVV" />
                         </div>
                     </section>
                 </div>
