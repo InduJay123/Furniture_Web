@@ -88,7 +88,7 @@ const Shop = () => {
       )
       );
       try{
-        await axiosPrivate.post("cart/update/", {product_id: id, acttion: increment});
+        await axiosPrivate.post("cart/update/", {product_id: id, action: "increment"});
       }catch(err){
          console.error("Failed to update cart", err);
       }  
@@ -115,6 +115,11 @@ const Shop = () => {
       console.error("Failed to remove cart item", err);
     }
   };
+
+  const subtotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <div>
