@@ -48,11 +48,11 @@ const Checkout = () => {
                     <section className="mb-20">
                         <h2 className="text-xl font-serif mb-4">Payment Method</h2>
 
-                        <div className="border rounded p-4 mb-3 flex items-center gap-3">
+                        <div className="border rounded px-4 py-3 mb-3 flex items-center gap-3">
                             <input type="radio" name="pay" defaultChecked />
                             <span>Credit / Debit Card</span>
                         </div>
-                        <div className="border rounded p-4 mb-6 flex items-center gap-3">
+                        <div className="border rounded px-4 py-3 mb-6 flex items-center gap-3">
                             <input type="radio" name="pay" />
                             <span>PayPal</span>
                         </div>
