@@ -1,4 +1,3 @@
-import { Trash2 } from "lucide-react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
@@ -81,7 +80,9 @@ const CartPanel = ({
           <span className="font-semibold">Subtotal</span>
           <span className="font-semibold">Rs. {subtotal}</span>
         </div>
-        <button className="w-full bg-gray-800 text-white py-2 mb-2 rounded hover:bg-gray-900">
+        <button 
+          onClick={goCheckout}
+          className="w-full bg-gray-800 text-white py-2 mb-2 rounded hover:bg-gray-900">
           Proceed to Checkout
         </button>
         <button className="w-full border border-gray-800 py-2 rounded hover:bg-gray-100">
