@@ -1,5 +1,6 @@
 import { Trash2 } from "lucide-react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const CartPanel = ({
   cartOpen,
@@ -10,6 +11,12 @@ const CartPanel = ({
   subtotal,
   closeCart,
 }) => {
+  const navigate = useNavigate();
+
+  const goCheckout = () => {
+    closeCart();
+    navigate("/checkout");
+  }
   return (
     <div
       className={`fixed top-0 right-0 h-full w-100 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
