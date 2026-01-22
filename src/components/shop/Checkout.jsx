@@ -14,7 +14,16 @@ const Checkout = () => {
                 
                 {/* LEFT (Scrollable) */}
                 <div className="lg:h-[calc(100vh-64px-80px)] overflow-y-auto pr-2">
-                    
+                    {/* Contact Information */}
+                    <section className="mb-8">
+                    <h2 className="text-xl font-serif mb-4">Contact Information</h2>
+                    <label className="block mb-2">Email Address</label>
+                    <input className="w-full border p-3 rounded bg-transparent" placeholder="your@email.com" />
+
+                    <label className="block mt-4 mb-2">Phone Number</label>
+                    <input className="w-full border p-3 rounded bg-transparent" placeholder="+1 (555) 000-0000" />
+                    </section>
+
                     <hr className="my-8" />
 
                     {/* Shipping Address */}
