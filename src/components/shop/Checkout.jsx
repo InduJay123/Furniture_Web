@@ -18,10 +18,10 @@ const Checkout = () => {
                     <section className="mb-8">
                         <h2 className="text-xl font-serif mb-4">Contact Information</h2>
                         <label className="block mb-2">Email Address</label>
-                        <input className="w-full border p-3 rounded bg-transparent" placeholder="your@email.com" />
+                        <input className="w-full border px-3 py-1 rounded bg-transparent" placeholder="your@email.com" />
 
                         <label className="block mt-4 mb-2">Phone Number</label>
-                        <input className="w-full border p-3 rounded bg-transparent" placeholder="+1 (555) 000-0000" />
+                        <input className="w-full border px-3 py-1 rounded bg-transparent" placeholder="+1 (555) 000-0000" />
                     </section>
 
                     <hr className="my-8" />
@@ -30,16 +30,15 @@ const Checkout = () => {
                     <section className="mb-8">
                         <h2 className="text-xl font-serif mb-4">Shipping Address</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <input className="border p-3 rounded bg-transparent" placeholder="First Name" />
-                            <input className="border p-3 rounded bg-transparent" placeholder="Last Name" />
+                            <input className="border px-3 py-1 rounded bg-transparent" placeholder="First Name" />
+                            <input className="border px-3 py-1 rounded bg-transparent" placeholder="Last Name" />
                         </div>
 
-                        <input className="border p-3 rounded bg-transparent w-full mt-4" placeholder="Street Address" />
-
+                        <input className="border px-3 py-1 rounded bg-transparent w-full mt-4" placeholder="Street Address" />
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-                            <input className="border p-3 rounded bg-transparent" placeholder="City" />
-                            <input className="border p-3 rounded bg-transparent" placeholder="State" />
-                            <input className="border p-3 rounded bg-transparent" placeholder="ZIP Code" />
+                            <input className="border px-3 py-1 rounded bg-transparent" placeholder="City" />
+                            <input className="border px-3 py-1 rounded bg-transparent" placeholder="State" />
+                            <input className="border px-3 py-1 rounded bg-transparent" placeholder="ZIP Code" />
                         </div>
                     </section>
 
@@ -59,7 +58,7 @@ const Checkout = () => {
                         </div>
 
                         <label className="block mb-2">Name on Card</label>
-                        <input className="border p-3 rounded bg-transparent w-full" placeholder="Name on card" />
+                        <input className="border px-3 py-1  rounded bg-transparent w-full" placeholder="Name on card" />
 
                         <label className="block mt-4 mb-2">Card Number</label>
                         <input className="border p-3 rounded bg-transparent w-full" placeholder="1234 5678 9012 3456" />
