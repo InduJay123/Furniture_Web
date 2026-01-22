@@ -1,3 +1,4 @@
+import { Trash2 } from "lucide-react";
 import PropTypes from "prop-types";
 
 const CartPanel = ({
@@ -11,7 +12,7 @@ const CartPanel = ({
 }) => {
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+      className={`fixed top-0 right-0 h-full w-100 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
         cartOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
@@ -36,32 +37,31 @@ const CartPanel = ({
                 className="w-16 h-16 object-cover"
               />
               <div className="flex-1">
-                <h3 className="font-semibold">{item.name}</h3>
+                <h3 className="font-medium">{item.name}</h3>
                 <p className="text-sm text-gray-500">{item.category}</p>
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center gap-6 mt-1 border rounded px-2 w-max">
                   <button
                     onClick={() => decrementQty(item.id)}
-                    className="px-2 bg-gray-200 rounded"
                   >
                     -
                   </button>
-                  <span>{item.quantity}</span>
+                  <span className="text-xs">{item.quantity}</span>
                   <button
                     onClick={() => incrementQty(item.id)}
-                    className="px-2 bg-gray-200 rounded"
                   >
                     +
                   </button>
                 </div>
               </div>
-              <div>
-                <p>Rs. {item.price}</p>
+              <div className="flex flex-col items-end gap-2">
                 <button
                   onClick={() => removeItem(item.id)}
-                  className="text-red-500 text-sm"
+                  className="text-black text-sm"
                 >
-                  ×
+                    x
                 </button>
+                <p>Rs. {item.price}</p>
+                
               </div>
             </div>
           ))
