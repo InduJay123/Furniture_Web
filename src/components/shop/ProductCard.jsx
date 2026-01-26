@@ -48,13 +48,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 };
 
 ProductCard.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    category: PropTypes.string,
-    image_url: PropTypes.string.isRequired,
-  }).isRequired,
+  product: PropTypes.object.isRequired,
   onAddToCart: PropTypes.func.isRequired,
 };
 
