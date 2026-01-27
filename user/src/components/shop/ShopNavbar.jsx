@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { FaShoppingCart, FaUser, FaHeart, FaBox } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import CartPanel from "./CartPanel";
 import { useCart } from "./CartContext";  
+import { ShoppingBag, ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ShopNavbar = () => {
   const [cartOpen, setCartOpen] = useState(false);
-
+  const navigate = useNavigate();
   const {
     cartItems,
     incrementQty,
@@ -31,9 +33,10 @@ const ShopNavbar = () => {
           <h1 className="text-2xl font-bold text-gray-800">HAUS</h1>
 
           <div className="flex items-center gap-6 text-gray-700 text-xl">
-            <FaHeart className="cursor-pointer hover:text-green-600" />
-            <FaBox className="cursor-pointer hover:text-green-600" />
-            <FaShoppingCart
+            <ShoppingBag 
+              className="cursor-pointer hover:text-green-600"
+              onClick={() => navigate("/orders")} />
+            <ShoppingCart
               className="cursor-pointer hover:text-green-600"
               onClick={() => setCartOpen(true)}
             />

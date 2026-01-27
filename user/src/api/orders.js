@@ -5,3 +5,9 @@ export const placeOrder = async (payload) => {
   const res = await axiosPrivate.post("orders/place/", payload);
   return res.data;
 };
+
+
+export const fetchOrders = async () => {
+  const res = await axiosPrivate.get("orders/list/");
+  return res.data;
+}
