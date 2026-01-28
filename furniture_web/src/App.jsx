@@ -11,6 +11,7 @@ import AdminLayout from "./admin/layouts/AdminLayout";
 import DashboardPage from "./admin/pages/DashboardPage";
 import ProductsPage from "./admin/pages/ProductsPage";
 import AddProductPage from "./admin/pages/AddProductPage";  
+import EditProductPage from "./admin/pages/EditProductPage";
 import './App.css';
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
           <Route index element={<DashboardPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route path="products/new" element={<AddProductPage />} />
+          <Route path="products/:id/edit" element={<EditProductPage />} />
         </Route>
       </Route>
     </Routes>

@@ -10,6 +10,7 @@ import {
   LogOut,
   X,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const menu = [
   { name: "Dashboard", icon: LayoutDashboard, path: "/admin" },
@@ -22,6 +23,13 @@ const menu = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    navigate("/admin/login");
+  };
   return (
     <aside className="w-72 bg-[#faf9f6] border-r h-screen flex flex-col">
       <div className="flex items-center justify-between px-6 py-5">
@@ -42,7 +50,7 @@ export default function Sidebar() {
               end
               className={({ isActive }) =>
                 `w-full flex items-center gap-4 px-5 py-4 rounded-lg text-left transition
-                ${isActive ? "bg-[#2b2622] text-white" : "text-black/60 hover:bg-black/5"}`
+                ${isActive ? "bg-[#2b2622] hover:text-white text-white" : "text-black/60 hover:text-black/50 hover:bg-black/5"}`
               }
             >
               {({ isActive }) => (
@@ -71,9 +79,11 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <button className="mt-5 flex items-center gap-3 text-black/60 hover:text-black transition">
+        <button 
+          onClick={handleLogout}
+          className="mt-5 flex items-center gap-3 text-black/60 hover:text-black hover:border-none transition">
           <LogOut className="w-5 h-5 text-black/50" />
-          <span className="text-[15px] font-medium">Sign Out</span>
+          <span className="text-[15px] font-medium hover:text-red-800/70">Sign Out</span>
         </button>
       </div>
     </aside>
