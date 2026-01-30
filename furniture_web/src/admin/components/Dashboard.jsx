@@ -1,5 +1,5 @@
 import StatCard from "./StatCard";
-import { DollarSign, ShoppingCart, Users, Eye } from "lucide-react";
+import { DollarSign, ShoppingCart, Users, Eye, Package } from "lucide-react";
 
 export default function Dashboard() {
   return (
@@ -9,7 +9,7 @@ export default function Dashboard() {
         <StatCard title="Total Revenue" value="Rs48,294" change={12.5} icon={<DollarSign />} />
         <StatCard title="Total Orders" value="1,248" change={8.2} icon={<ShoppingCart />} />
         <StatCard title="Total Customers" value="3,842" change={15.3} icon={<Users />} />
-        <StatCard title="Page Views" value="24.5K" change={-2.4} icon={<Eye />} />
+        <StatCard title="Total Products" value="10" change={-2.4} icon={<Package />} />
       </div>
 
       {/* Tables */}
