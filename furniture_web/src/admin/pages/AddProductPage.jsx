@@ -1,6 +1,7 @@
 import { ArrowLeft, Save } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addProduct } from "../../api/products";
 
 export default function AddProductPage() {
   const navigate = useNavigate();
@@ -10,14 +11,17 @@ export default function AddProductPage() {
     sku: "",
     description: "",
     price: "0.00",
-    stockQty: "0",
-    outOfStock: false,
+    stock_qty: "0",
+    out_of_stock: false,
     weight: "0.00",
     dimensions: "",
     imagePreview: "",
   });
 
   const categories = useMemo(() => ["Sofas", "Tables", "Chairs", "Beds", "Lighting"], []);
+  const [imageFile, setImageFile] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const onChange = (k) => (e) => {
     const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -27,13 +31,38 @@ export default function AddProductPage() {
   const onPickImage = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    setImageFile(file);
     const url = URL.createObjectURL(file);
     setForm((p) => ({ ...p, imagePreview: url }));
   };
 
-  const save = () => {
+  const save = async () => {
+    setErrMsg("");
+    if (!form.name.trim()) {
+      setErrMsg("Product name is required");
+      return;
+    }
     console.log("SAVE PRODUCT", form);
-    navigate("/admin/products");
+    try{
+      setSaving(true);
+
+      await addProduct({
+        name: form.name,
+        category: form.category,
+        price: form.price,
+        imageFile: imageFile
+      });
+      alert("Product added successfully");
+      navigate("/admin/products")
+    }catch(err){
+      console.error("ADD PRODUCT ERR", err);
+      const msg =
+        err?.response?.data?.error ||
+        "Failed to save product. Check admin auth / backend.";
+      setErrMsg(msg);
+    }finally{
+      setSaving(false);
+    }
   };
 
   return (

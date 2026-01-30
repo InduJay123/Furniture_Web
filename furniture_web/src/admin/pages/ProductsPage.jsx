@@ -1,29 +1,41 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Filter, Plus, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import { getProducts } from "../../api/products";
 
 export default function ProductsPage() {
   const navigate = useNavigate();
   const [q, setQ] = useState("");
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const products = useMemo(
-    () => [
-      { id: 1, name: "Cream Fabric Sofa", category: "Sofas", price: 1299, stockLabel: "In Stock" },
-      { id: 2, name: "Oak Dining Table", category: "Tables", price: 2499, stockLabel: "In Stock" },
-      { id: 3, name: "Green Velvet Armchair", category: "Chairs", price: 899, stockLabel: "Low Stock" },
-    ],
-    []
-  );
+  useEffect(()=> {
+    const loadProducts = async() => {
+      try{
+        const data = await getProducts();
+        setProduct(data);
+        console.log(data);
+      }catch(error){
+        console.error("Failed to fetch products:", error);
+      }finally{
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, []);
 
-  const filtered = products.filter((p) =>
+  if (loading) {
+    return <div className="px-6 py-6">Loading products...</div>;
+  }
+
+  const filtered = product.filter((p) =>
     (p.name + " " + p.category).toLowerCase().includes(q.toLowerCase())
   );
 
   return (
     <div className="px-6 py-6">
-      <h2 className="text-3xl font-serif text-[#2b2622]">Products</h2>
-      <p className="text-black/50 mt-1">Manage your product inventory</p>
+     <p className="text-black/50 mt-1 justify-start">Manage your product inventory</p>
 
       <div className="mt-6 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-2 border rounded-xl px-3 py-2 bg-white w-full md:w-[520px]">

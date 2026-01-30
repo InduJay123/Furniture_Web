@@ -3,9 +3,30 @@ import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 
 const titleFromPath = (pathname) => {
-  if (pathname.startsWith("/admin/products/new")) return "Add New Product";
-  if (pathname.startsWith("/admin/products")) return "Products";
-  return "Dashboard";
+  if (pathname === "/admin") return "Dashboard";
+
+  if (pathname.startsWith("/admin/products/new"))
+    return "Add New Product";
+
+  if (pathname.startsWith("/admin/products/") && pathname.endsWith("/edit"))
+    return "Edit Product";
+
+  if (pathname.startsWith("/admin/products"))
+    return "Products";
+
+  if (pathname.startsWith("/admin/orders"))
+    return "Orders";
+
+  if (pathname.startsWith("/admin/customers"))
+    return "Customers";
+
+  if (pathname.startsWith("/admin/analytics"))
+    return "Analytics";
+
+  if (pathname.startsWith("/admin/settings"))
+    return "Settings";
+
+  return "Admin";
 };
 
 export default function AdminLayout() {
@@ -13,7 +34,7 @@ export default function AdminLayout() {
   const title = titleFromPath(pathname);
 
   return (
-    <div className="h-screen w-full flex bg-[#fbfaf7]">
+    <div className="h-screen w-screen flex bg-[#fbfaf7]">
       <Sidebar />
 
       <div className="flex-1 flex flex-col min-w-0">
