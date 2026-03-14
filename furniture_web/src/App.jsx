@@ -17,6 +17,7 @@ import EditProductPage from "./admin/pages/EditProductPage";
 import OrdersPage from "./admin/pages/OrdersPage";
 
 import './App.css';
+import CustomersPage from "./admin/pages/CustomersPage";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="products/new" element={<AddProductPage />} />
             <Route path="products/:id/edit" element={<EditProductPage />} />
             <Route path="orders" element={<OrdersPage />} />
+            <Route path="customers" element={<CustomersPage/>} />
           </Route>
         </Route>
     </Routes>

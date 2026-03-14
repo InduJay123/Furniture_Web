@@ -1,15 +1,5 @@
 import { NavLink } from "react-router-dom";
-import {
-  LayoutDashboard,
-  Package,
-  ShoppingCart,
-  Users,
-  Heart,
-  BarChart2,
-  Settings,
-  LogOut,
-  X,
-} from "lucide-react";
+import { LayoutDashboard,Package,ShoppingCart,Users,BarChart2,Settings,LogOut,X,} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const menu = [
@@ -17,7 +7,6 @@ const menu = [
   { name: "Products", icon: Package, path: "/admin/products" },
   { name: "Orders", icon: ShoppingCart, path: "/admin/orders" },
   { name: "Customers", icon: Users, path: "/admin/customers" },
-  { name: "Favorites", icon: Heart, path: "/admin/favorites" },
   { name: "Analytics", icon: BarChart2, path: "/admin/analytics" },
   { name: "Settings", icon: Settings, path: "/admin/settings" },
 ];

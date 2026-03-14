@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Search,Bell,ChevronDown,Download,SlidersHorizontal,Package,
-  Clock,Truck, CheckCircle,Eye,MoreHorizontal,} from "lucide-react";
-import { fetchAdminOrders, fetchOrders, updateOrderStatus } from "../../api/orders";
+  Clock,Truck, CheckCircle,Eye,MoreHorizontal,
+  DownloadIcon,} from "lucide-react";
+import { downloadOrderPdf, fetchAdminOrders, fetchOrders, previewOrderPdf, updateOrderStatus } from "../../api/orders";
 import OrderDetailsModal from "../components/OrderDetailsModel";
 
 export default function OrdersPage() {
@@ -142,7 +143,7 @@ export default function OrdersPage() {
                   <th className="py-4 px-6 font-medium">Date</th>
                   <th className="py-4 px-6 font-medium">Payment</th>
                   <th className="py-4 px-6 font-medium">Status</th>
-                  <th className="py-4 px-6 font-medium text-right"> </th>
+                  <th className="py-4 px-16 font-medium">Actions </th>
                 </tr>
               </thead>
 
@@ -171,6 +172,7 @@ export default function OrdersPage() {
                     <td className="py-4 px-6">
                       <select
                         value={o.status}
+                        className={statusSelectClass(o.status)}
                         onChange={async (e) => {
                           const newStatus = e.target.value;
                           // optimistic UI
@@ -184,9 +186,7 @@ export default function OrdersPage() {
                             setOrders(prev => prev.map(x => x.rawId === o.rawId ? { ...x, status: o.status } : x));
                             alert("Failed to update status");
                           }
-                        }}
-                        className="border rounded-md px-2 py-1 bg-white text-sm"
-                      >
+                        }}>
                         <option value="PENDING">Pending</option>
                         <option value="PACKING">Packing</option>
                         <option value="DELIVERED">Delivered</option>
@@ -194,19 +194,31 @@ export default function OrdersPage() {
                     </td>
 
 
-                    <td className="py-4 px-6">
+                    <td className="py-4 pr-2">
                       <div className="flex items-center justify-end gap-3 text-gray-600">
                           <button
-                            className="p-2 rounded-md hover:bg-black/5"
+                            className="p-2 rounded-md hover:bg-green-50 hover:border-green-200"
                             title="View"
                             onClick={() => setSelected(o)}
                           >
                             <Eye size={16} />
                           </button>
 
-                        <button className="p-2 rounded-md hover:bg-black/5" title="More">
-                          <MoreHorizontal size={16} />
-                        </button>
+                        <div className="flex items-center justify-end gap-2">
+                            <button
+                              className="px-2 py-2 text-xs border border-black/80 rounded-md hover:bg-black/5"
+                              onClick={() => previewOrderPdf(o.rawId)}
+                            >
+                              Invoice Preview
+                            </button>
+
+                            <button
+                              className="p-2 text-xs bg-gray-700 text-white rounded-md hover:bg-white hover:text-black hover:border-none"
+                              onClick={() => downloadOrderPdf(o.rawId)}
+                            >
+                              <DownloadIcon size={16}/>
+                            </button>
+                          </div>
                       </div>
                     </td>
                   </tr>
@@ -268,6 +280,16 @@ function StatusBadge({ value }) {
     </span>
   );
 }
+
+const statusSelectClass = (status) => {
+  const base = "border rounded-md px-2 py-1 text-sm font-medium outline-none";
+  const map = {
+    PENDING: "bg-gray-100 text-gray-700 border-gray-200",
+    PACKING: "bg-orange-100 text-orange-700 border-orange-200",
+    DELIVERED: "bg-green-100 text-green-700 border-green-200",
+  };
+  return `${base} ${map[status] || "bg-gray-100 text-gray-700 border-gray-200"}`;
+};
 
 function PaymentBadge({ value }) {
   const map = {
