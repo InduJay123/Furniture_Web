@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPrivate = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: "https://furniture-backend-fphuhqdbcyhbg2gk.southeastasia-01.azurewebsites.net",
 });
 
 axiosPrivate.interceptors.request.use((config) => {
