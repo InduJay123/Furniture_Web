@@ -8,6 +8,7 @@ import ShopNavbar from "../components/shop/ShopNavbar";
 import CartPanel from "../components/shop/CartPanel";
 import { useCart } from "../components/shop/CartContext";
 import axiosPrivate from "../../api/axiosPrivate";
+import FeaturePage from "../components/shop/FeatureProducts";
 
 const Shop = () => {
   const [cartOpen, setCartOpen] = useState(false);
