@@ -1,0 +1,22 @@
+{
+  "buildCommand": "npm run build",
+  "outputLocation": "dist",
+  "apiLocation": "api",
+  "appBuildCommand": "npm run build",
+  "appLocation": ".",
+  "apiBuildCommand": "echo 'no api'",
+  "routes": [],
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html"
+    }
+  },
+  "globalHeaders": {},
+  "mimeTypes": {},
+  "platform": {
+    "apiRuntime": "node:20"
+  }
+}

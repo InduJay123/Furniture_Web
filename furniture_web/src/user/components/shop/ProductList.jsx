@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ProductCard from "./ProductCard";
-import axiosPublic from "../../../api/axiosPublic";
+import axiosPublic from "../../api/axiosPublic";
 
 const ProductList = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
